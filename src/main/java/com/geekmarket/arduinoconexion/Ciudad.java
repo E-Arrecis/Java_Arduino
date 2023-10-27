@@ -30,10 +30,10 @@ public class Ciudad extends javax.swing.JFrame {
             public void serialEvent(SerialPortEvent spe) {
                 try {
                     if(arduino.isMessageAvailable()==true){
-                        //datoT.setText(arduino.printMessage());
+                        MensajeAR.setText(arduino.printMessage());
                         String D= arduino.printMessage();
-                        //System.out.println(datoT.getText());
-                        //Mensaje(datoT.getText());
+                        System.out.println(MensajeAR.getText());
+                        informacion(MensajeAR.getText());
                     }} catch (SerialPortException ex) {
                     Logger.getLogger(Ventana_copia.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (ArduinoException ex) {
@@ -49,6 +49,7 @@ public class Ciudad extends javax.swing.JFrame {
         this.setTitle("New York");
         this.setLocationRelativeTo(null);
         this.setResizable(false);
+        MensajeAR.setVisible(false);
         
         try {
                 arduino.arduinoRXTX("COM4", 9600, escucha);
@@ -67,6 +68,7 @@ public class Ciudad extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        MensajeAR = new javax.swing.JLabel();
         Elevador = new javax.swing.JPanel();
         PantallaNivel = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
@@ -183,18 +185,24 @@ public class Ciudad extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(Elevador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
                 .addComponent(Puente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(22, 22, 22))
+                .addGap(24, 24, 24))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(322, 322, 322)
+                .addComponent(MensajeAR, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(22, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(MensajeAR)
+                .addGap(63, 63, 63)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(Puente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Elevador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(352, 352, 352))
+                .addContainerGap(305, Short.MAX_VALUE))
         );
 
         pack();
@@ -286,6 +294,26 @@ public class Ciudad extends javax.swing.JFrame {
        PuenteNivel=2;
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    
+    private void informacion(String dato){
+    
+        switch(dato){
+        
+            case "U,Finalizado" -> {
+                JOptionPane.showMessageDialog(null, "Finalizo Proceso de Subida del Puente");
+           }
+            case "D,Finalizado" -> {
+                JOptionPane.showMessageDialog(null, "Finalizo Proceso de Bajada del Puente");
+           }
+            case "F,Finalizado" -> {
+                JOptionPane.showMessageDialog(null, "Finalizo Proceso de Subida de Elevador");
+           }
+            case "B,Finalizado" -> {
+                JOptionPane.showMessageDialog(null, "Finalizo Proceso de Subida de Elevador");
+           }
+        }
+    }
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -320,6 +348,7 @@ public class Ciudad extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Elevador;
+    private javax.swing.JLabel MensajeAR;
     private javax.swing.JLabel PantallaNivel;
     private javax.swing.JLabel PantallaNivel1;
     private javax.swing.JPanel Puente;
