@@ -100,7 +100,7 @@ public class Ciudad extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        Elevador.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(0, 0, 0)), "Elevador", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP));
+        Elevador.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(0, 0, 0)), "  Elevador  ", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP));
 
         PantallaNivel.setFont(new java.awt.Font("Agency FB", 3, 36)); // NOI18N
         PantallaNivel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -153,7 +153,7 @@ public class Ciudad extends javax.swing.JFrame {
                 .addContainerGap(34, Short.MAX_VALUE))
         );
 
-        Puente.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(0, 0, 0)), "Puente", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP));
+        Puente.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(0, 0, 0)), "  Puente  ", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP));
 
         PantallaNivel1.setFont(new java.awt.Font("Agency FB", 3, 36)); // NOI18N
         PantallaNivel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -205,7 +205,7 @@ public class Ciudad extends javax.swing.JFrame {
                 .addContainerGap(50, Short.MAX_VALUE))
         );
 
-        Luces.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(0, 0, 0)), "Luces", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP));
+        Luces.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(0, 0, 0)), "  Luces  ", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP));
 
         PantallaNivel2.setFont(new java.awt.Font("Agency FB", 3, 36)); // NOI18N
         PantallaNivel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -306,9 +306,9 @@ public class Ciudad extends javax.swing.JFrame {
        }
        
        else{
-           try {
+          
                ElevadorIcono.setIcon((new ImageIcon(SubirElevador.getImage().getScaledInstance(ElevadorIcono.getWidth(),ElevadorIcono.getHeight(),Image.SCALE_SMOOTH))));
-               arduino.sendData("F");
+            try {    arduino.sendData("F");
            } catch (ArduinoException | SerialPortException ex) {
                Logger.getLogger(Ciudad.class.getName()).log(Level.SEVERE, null, ex);
            }
@@ -330,8 +330,9 @@ public class Ciudad extends javax.swing.JFrame {
            JOptionPane.showMessageDialog(null,"Ya te encuentras Abajo");  
        }
        else{
-           try {
-               arduino.sendData("B");
+           
+               ElevadorIcono.setIcon((new ImageIcon(BajarElevador.getImage().getScaledInstance(ElevadorIcono.getWidth(),ElevadorIcono.getHeight(),Image.SCALE_SMOOTH))));
+            try {   arduino.sendData("B");
            } catch (ArduinoException | SerialPortException ex) {
                Logger.getLogger(Ciudad.class.getName()).log(Level.SEVERE, null, ex);
            }
@@ -352,6 +353,7 @@ public class Ciudad extends javax.swing.JFrame {
            JOptionPane.showMessageDialog(null,"Ya esta Abajo");  
        }
        else{
+           PuenteIcono.setIcon((new ImageIcon(BajarPuente.getImage().getScaledInstance(PuenteIcono.getWidth(),PuenteIcono.getHeight(),Image.SCALE_SMOOTH))));
            try {
                arduino.sendData("D");
            } catch (ArduinoException | SerialPortException ex) {
@@ -371,6 +373,8 @@ public class Ciudad extends javax.swing.JFrame {
            JOptionPane.showMessageDialog(null,"Ya esta Arriba");  
        }
        else{
+           PuenteIcono.setIcon((new ImageIcon(SubirPuente.getImage().getScaledInstance(PuenteIcono.getWidth(),PuenteIcono.getHeight(),Image.SCALE_SMOOTH))));
+           
            try {
                arduino.sendData("U");
            } catch (ArduinoException | SerialPortException ex) {
@@ -385,11 +389,12 @@ public class Ciudad extends javax.swing.JFrame {
        jButton6.setBackground(Color.white);
        jButton5.setBackground(Color.GREEN);
        
-        System.out.println("Nivel: "+PuenteNivel);
+        System.out.println("Nivel: "+NivelLuz);
        if(NivelLuz==2){
            JOptionPane.showMessageDialog(null,"Ya esta Encendida");  
        }
        else{
+           LucesIcono.setIcon((new ImageIcon(EncenderLuz.getImage().getScaledInstance(LucesIcono.getWidth(),LucesIcono.getHeight(),Image.SCALE_SMOOTH))));
            try {
                arduino.sendData("L");
            } catch (ArduinoException | SerialPortException ex) {
@@ -407,9 +412,10 @@ public class Ciudad extends javax.swing.JFrame {
        
         System.out.println("Nivel: "+NivelLuz);
        if(NivelLuz==1){
-           JOptionPane.showMessageDialog(null,"Ya esta Apagado");  
+           JOptionPane.showMessageDialog(null,"Ya esta Apagada");  
        }
        else{
+           LucesIcono.setIcon((new ImageIcon(ApagarLuz.getImage().getScaledInstance(LucesIcono.getWidth(),LucesIcono.getHeight(),Image.SCALE_SMOOTH))));
            try {
                arduino.sendData("O");
            } catch (ArduinoException | SerialPortException ex) {
@@ -425,16 +431,19 @@ public class Ciudad extends javax.swing.JFrame {
         switch(dato){
         
             case "U,Finalizado" -> {
-                ElevadorIcono.setIcon((new ImageIcon(ProcesoElevador.getImage().getScaledInstance(ElevadorIcono.getWidth(),ElevadorIcono.getHeight(),Image.SCALE_SMOOTH))));
+                PuenteIcono.setIcon((new ImageIcon(ProcesoPuente.getImage().getScaledInstance(PuenteIcono.getWidth(),PuenteIcono.getHeight(),Image.SCALE_SMOOTH))));
                 JOptionPane.showMessageDialog(null, "Finalizo Proceso de Subida del Puente");
            }
             case "D,Finalizado" -> {
+                PuenteIcono.setIcon((new ImageIcon(ProcesoPuente.getImage().getScaledInstance(PuenteIcono.getWidth(),PuenteIcono.getHeight(),Image.SCALE_SMOOTH))));
                 JOptionPane.showMessageDialog(null, "Finalizo Proceso de Bajada del Puente");
            }
             case "F,Finalizado" -> {
+                ElevadorIcono.setIcon((new ImageIcon(ProcesoElevador.getImage().getScaledInstance(ElevadorIcono.getWidth(),ElevadorIcono.getHeight(),Image.SCALE_SMOOTH))));
                 JOptionPane.showMessageDialog(null, "Finalizo Proceso de Subida de Elevador");
            }
             case "B,Finalizado" -> {
+                ElevadorIcono.setIcon((new ImageIcon(ProcesoElevador.getImage().getScaledInstance(ElevadorIcono.getWidth(),ElevadorIcono.getHeight(),Image.SCALE_SMOOTH))));
                 JOptionPane.showMessageDialog(null, "Finalizo Proceso de Bajada de Elevador");
            }
             case "L" -> {
