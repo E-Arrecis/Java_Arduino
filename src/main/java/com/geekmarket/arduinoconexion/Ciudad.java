@@ -68,7 +68,7 @@ public class Ciudad extends javax.swing.JFrame {
         MensajeAR.setVisible(false);
         
         try {
-                arduino.arduinoRXTX("COM4", 9600, escucha);
+                arduino.arduinoRXTX("COM7", 9600, escucha);
             } catch (ArduinoException ex) {
                 Logger.getLogger(Ventana_copia.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -558,10 +558,12 @@ public class Ciudad extends javax.swing.JFrame {
            }
             case "L" -> {
                 PantallaNivel2.setText("Endendida");
+                NivelLuz=2;
                 JOptionPane.showMessageDialog(null, "lUZ Encendida");
            }
             case "O" -> {
                 PantallaNivel2.setText("Apagada");
+                NivelLuz=1;
                 JOptionPane.showMessageDialog(null, "Luz Apagada");
            }
         }
