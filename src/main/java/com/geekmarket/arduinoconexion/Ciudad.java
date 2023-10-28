@@ -527,7 +527,7 @@ public class Ciudad extends javax.swing.JFrame {
        else{
            Panico.setIcon((new ImageIcon(ok.getImage().getScaledInstance(Panico.getWidth(),Panico.getHeight(),Image.SCALE_SMOOTH))));
            try {
-               arduino.sendData("P");
+               arduino.sendData("Z");
            } catch (ArduinoException | SerialPortException ex) {
                Logger.getLogger(Ciudad.class.getName()).log(Level.SEVERE, null, ex);
            }
