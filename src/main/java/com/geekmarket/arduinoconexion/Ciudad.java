@@ -27,7 +27,8 @@ public class Ciudad extends javax.swing.JFrame {
    public int nivel = 0;
    public int PuenteNivel=0;
    public int NivelLuz=0;
-   
+   public int nivelPanico=0;
+
    ImageIcon SubirElevador = new ImageIcon("ElevadorUP.png");
    ImageIcon BajarElevador = new ImageIcon("ElevadorDown.png");
    ImageIcon ProcesoElevador = new ImageIcon("ArribaAbajo.png");
@@ -36,6 +37,8 @@ public class Ciudad extends javax.swing.JFrame {
    ImageIcon ProcesoPuente = new ImageIcon("Proceso.png");
    ImageIcon EncenderLuz = new ImageIcon("Encendido.png");
    ImageIcon ApagarLuz = new ImageIcon("Apagado.png");
+   ImageIcon ok = new ImageIcon("ok.png");
+   ImageIcon warning = new ImageIcon("warning.png");
    
    PanamaHitek_Arduino arduino = new PanamaHitek_Arduino();
         SerialPortEventListener escucha = new SerialPortEventListener() {
@@ -97,6 +100,11 @@ public class Ciudad extends javax.swing.JFrame {
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         LucesIcono = new javax.swing.JLabel();
+        Luces2 = new javax.swing.JPanel();
+        PantallaNivel4 = new javax.swing.JLabel();
+        jButton9 = new javax.swing.JButton();
+        jButton10 = new javax.swing.JButton();
+        Panico = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -257,6 +265,58 @@ public class Ciudad extends javax.swing.JFrame {
                 .addGap(28, 28, 28))
         );
 
+        Luces2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(0, 0, 0)), "  Alarma  ", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP));
+
+        PantallaNivel4.setFont(new java.awt.Font("Agency FB", 3, 36)); // NOI18N
+        PantallaNivel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        PantallaNivel4.setText("Bienvenido");
+        PantallaNivel4.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(0, 0, 0)));
+
+        jButton9.setText("Alertar");
+        jButton9.setOpaque(true);
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
+
+        jButton10.setText("Apagar");
+        jButton10.setOpaque(true);
+        jButton10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton10ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout Luces2Layout = new javax.swing.GroupLayout(Luces2);
+        Luces2.setLayout(Luces2Layout);
+        Luces2Layout.setHorizontalGroup(
+            Luces2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(Luces2Layout.createSequentialGroup()
+                .addGap(66, 66, 66)
+                .addGroup(Luces2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(Luces2Layout.createSequentialGroup()
+                        .addComponent(jButton9)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton10))
+                    .addComponent(PantallaNivel4, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Panico, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(79, Short.MAX_VALUE))
+        );
+        Luces2Layout.setVerticalGroup(
+            Luces2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(Luces2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(PantallaNivel4, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(54, 54, 54)
+                .addGroup(Luces2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton9)
+                    .addComponent(jButton10))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                .addComponent(Panico, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -275,6 +335,11 @@ public class Ciudad extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(Luces, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(430, 430, 430)
+                    .addComponent(Luces2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap()))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -288,6 +353,11 @@ public class Ciudad extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(Luces, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addContainerGap(376, Short.MAX_VALUE)
+                    .addComponent(Luces2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap()))
         );
 
         pack();
@@ -406,7 +476,7 @@ public class Ciudad extends javax.swing.JFrame {
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
-         PantallaNivel2.setText("Apagada");
+       PantallaNivel2.setText("Apagada");
        jButton5.setBackground(Color.white);
        jButton6.setBackground(Color.GREEN);
        
@@ -424,6 +494,46 @@ public class Ciudad extends javax.swing.JFrame {
        }
        NivelLuz=1;
     }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+       PantallaNivel4.setText("PANICO");
+       jButton10.setBackground(Color.white);
+       jButton9.setBackground(Color.GREEN);
+       
+        System.out.println("Nivel: "+nivelPanico);
+       if(nivelPanico==2){
+           JOptionPane.showMessageDialog(null,"La alarma de Panico ya esta encendida");  
+       }
+       else{
+           Panico.setIcon((new ImageIcon(warning.getImage().getScaledInstance(Panico.getWidth(),Panico.getHeight(),Image.SCALE_SMOOTH))));
+           try {
+               arduino.sendData("P");
+           } catch (ArduinoException | SerialPortException ex) {
+               Logger.getLogger(Ciudad.class.getName()).log(Level.SEVERE, null, ex);
+           }
+       }
+       nivelPanico=2;
+    }//GEN-LAST:event_jButton9ActionPerformed
+
+    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+        PantallaNivel4.setText("TRANQUILO");
+       jButton9.setBackground(Color.white);
+       jButton10.setBackground(Color.GREEN);
+       
+        System.out.println("Nivel: "+nivelPanico);
+       if(nivelPanico==1){
+           JOptionPane.showMessageDialog(null,"La alarma de Panico esta apagada");  
+       }
+       else{
+           Panico.setIcon((new ImageIcon(ok.getImage().getScaledInstance(Panico.getWidth(),Panico.getHeight(),Image.SCALE_SMOOTH))));
+           try {
+               arduino.sendData("P");
+           } catch (ArduinoException | SerialPortException ex) {
+               Logger.getLogger(Ciudad.class.getName()).log(Level.SEVERE, null, ex);
+           }
+       }
+       nivelPanico=1;
+    }//GEN-LAST:event_jButton10ActionPerformed
 
     
     private void informacion(String dato){
@@ -447,9 +557,11 @@ public class Ciudad extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Finalizo Proceso de Bajada de Elevador");
            }
             case "L" -> {
+                PantallaNivel2.setText("Endendida");
                 JOptionPane.showMessageDialog(null, "lUZ Encendida");
            }
             case "O" -> {
+                PantallaNivel2.setText("Apagada");
                 JOptionPane.showMessageDialog(null, "Luz Apagada");
            }
         }
@@ -491,18 +603,28 @@ public class Ciudad extends javax.swing.JFrame {
     private javax.swing.JPanel Elevador;
     private javax.swing.JLabel ElevadorIcono;
     private javax.swing.JPanel Luces;
+    private javax.swing.JPanel Luces1;
+    private javax.swing.JPanel Luces2;
     private javax.swing.JLabel LucesIcono;
+    private javax.swing.JLabel LucesIcono1;
     private javax.swing.JLabel MensajeAR;
+    private javax.swing.JLabel Panico;
     private javax.swing.JLabel PantallaNivel;
     private javax.swing.JLabel PantallaNivel1;
     private javax.swing.JLabel PantallaNivel2;
+    private javax.swing.JLabel PantallaNivel3;
+    private javax.swing.JLabel PantallaNivel4;
     private javax.swing.JPanel Puente;
     private javax.swing.JLabel PuenteIcono;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
+    private javax.swing.JButton jButton9;
     // End of variables declaration//GEN-END:variables
 }
